@@ -1,0 +1,42 @@
+Markdown Demo
+-------------
+This is my first markdown.
+
+Write R code:
+
+```{r}
+a <- rnorm(10,5, 1)
+summary(a)
+```
+
+```{r, eval=FALSE}
+#eval = FALSE, do not show the result of the code
+barplot(a)
+```
+
+```{r plot, echo=FALSE}
+mean(a)
+```
+echo=FALSE: do not show the code, only result  
+plot is the name of the r chunk
+
+hide the result
+```{r, results='hide'}
+median(a)
+```
+
+insert the R code into sentences  
+My favorite number is `r mean(a)` .
+
+That is how you write a R code.
+
+write opts_chunk$set(echo = FALSE, results = "hide"), all the code and results would be hided by default. if you want to show the code, you need to type echo = TRUE for each chunk.
+
+cache = TRUE, the output of the chunk woulb saved in disk. if nothing changes, the next time you run the code, the result would be loaded from the cache.
+
+unordered list:  
+
+*element 1  
+
+*element 2  
+

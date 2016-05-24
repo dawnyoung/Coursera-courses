@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/147402/4bd4d5d84e174914b9163ff0e1fe2e7e
+url: http://rpubs.com/dawnyoung/147402
+when: 1453916423.04117
