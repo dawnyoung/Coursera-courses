@@ -1,0 +1,37 @@
+---
+title: "Brief analysis of ToothGrowth data in the R datasets package"
+author: "dongyangli"
+date: "January 30, 2016"
+output: pdf_document
+---
+
+##Load necessary package and the ToothGrowth data
+```{r, cache=TRUE}
+library(datasets)
+library(ggplot2)
+data("ToothGrowth")
+```
+
+##Basic explortary data analysis
+```{r, cache=TRUE}
+p <- ggplot(ToothGrowth, 
+            aes(x = factor(supp), y = len, fill = factor(dose))) +
+  geom_boxplot()
+print(p)
+```
+
+
+##Brief summary
+```{r, cache=TRUE}
+summary(ToothGrowth)
+```
+
+##Hypothesis test
+Null hypothesis: both the supp and dose have no effect on the growth of tooth
+```{r, cache=TRUE}
+fit <- aov(ToothGrowth$len ~ ToothGrowth$supp + ToothGrowth$dose)
+anova(fit)
+```
+We can see that both the p-values of supp and dose are less than 0.05. 
+
+Therefore, at 95% confidence level, the null hypothesis should be rejected, which mean both supp and dose have significant effect on tooth growth.

@@ -1,0 +1,68 @@
+---
+output: pdf_document
+---
+##Statistical Inferences: Project
+#Exponential distribution and Central Limit Theorem
+Author: Dongyang Li
+
+
+##Overview
+In this project you will investigate the exponential distribution in R and compare it with the Central Limit Theorem. The exponential distribution can be simulated in R with rexp(n, lambda) where lambda is the rate parameter. The mean of exponential distribution is 1/lambda and the standard deviation is also 1/lambda. Set lambda = 0.2 for all of the simulations. You will investigate the distribution of averages of 40 exponentials. Note that you will need to do a thousand simulations.
+
+##Simulations
+###Simulation of exponential distribution and show the histogram of sample means.
+```{r, cache=TRUE}
+set.seed(1000)
+samplemean <- NULL
+for (i in 1:1000){
+  samplemean <- c(samplemean, mean(rexp(40, rate = 0.2)))
+}
+hist(samplemean, col = "grey", 
+     main = "Histogram of sample means", 
+     xlab = "sample means")
+```
+
+###Compare the sample mean and theoretical mean
+Calculate the theoretical mean of the distribution
+```{r, cache=TRUE}
+1/0.2
+```
+
+Calculate the sample mean
+```{r, cache=TRUE}
+mean(samplemean)
+```
+
+We can see the sample mean is close to the theoretical mean.
+
+###Compare the sample variance and the theoretical variance
+Calculate the theoretical variance
+```{r, cache=TRUE}
+(1/0.2)^2/40
+```
+
+Calculate the sample variance
+```{r, cache=TRUE}
+var(samplemean)
+```
+
+We can see the sample variance is close the the theoretical mean.
+
+###Compare the distribution of sample means and normal distribution
+```{r, cache=TRUE, message=FALSE}
+library(ggplot2)
+p <- ggplot(data.frame(samplemean), aes(samplemean)) +
+  geom_histogram(aes(y = ..density..),  
+                 color = "grey", fill = "wheat") +
+  labs(title = "Histogram of sample means", x = "Sample means") +
+  stat_function(fun = dnorm, color = "red", size = 2,
+                args = list(mean = 5, sd = sqrt((1/0.2)^2/40))) +
+  stat_function(fun = dnorm, color = "green", size = 2,
+                args = list(mean = mean(samplemean), sd = sqrt(var(samplemean))))
+print(p)
+```
+
+We can see the histogram is close to normal distribution.
+
+##Conclusion
+When the sample size is large enough, Central Limit Theorem is satisified.
