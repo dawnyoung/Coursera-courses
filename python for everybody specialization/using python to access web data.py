@@ -92,4 +92,5 @@ get_result('http://www.pythonlearn.com/code/intro-short.txt')
 #    week 4
 ###############################################################################
 
-import urllib
+# urllib
+# beautiful soup
