@@ -65,7 +65,9 @@ import socket
 
 mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 mysock.connect(('www.pythonlearn.com', 80)) # no need of http:// for the first argument
-mysock.send('GET http://www.pythonlearn.com/code/intro-short.txt HTTP/1.0\n\n')
+mysock.send(b'GET http://www.pythonlearn.com/code/intro-short.txt HTTP/1.0\n\n')
+# In Python 3, data sent or received through the network must be bytes, not string.
+# b'url' fixes this
 
 while True:
     data = mysock.recv(512) # actually read the data
